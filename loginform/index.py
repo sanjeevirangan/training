@@ -1,6 +1,5 @@
 #!/Python27/python
 
-
 # imports
 import cgi, MySQLdb
 from hashlib import md5
