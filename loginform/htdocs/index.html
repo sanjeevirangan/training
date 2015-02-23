@@ -1,0 +1,22 @@
+<HTML>
+  <BODY>
+    <TITLE>Login form</TITLE>
+    <H1>Login to proceed</H1>   
+    <H3>Please enter your username and password.</H3>
+
+    <FORM METHOD = post ACTION = '/cgi-bin/loginform/login.py'>
+      <TABLE BORDER = 0>
+       
+        <TR><TH>Username:</TH><TD><INPUT TYPE = text NAME = 'username'></TD><TR>
+        <TR><TH>Password:</TH><TD><INPUT TYPE = password NAME = 'password'></TD></TR>
+      </TABLE>
+
+      <INPUT TYPE = hidden NAME = 'action' VALUE = 'display'>
+      <INPUT TYPE = submit VALUE = 'Enter'>
+    </FORM>
+
+    <form action= 'signup.html'>
+      <input type="submit" value="Signup">
+    </form>
+  </BODY>
+</HTML>
