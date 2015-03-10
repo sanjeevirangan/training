@@ -3,40 +3,65 @@
 
 import cgi
 import cgitb
-import mysql_calls
-import json
+import MySQLdb
+import my_response
 import sys
 
 
 def insert_to_product_table():
     cgitb.enable()
     query = cgi.FieldStorage()
-    sql_calls = mysql_calls.MySqlCalls()
-    result = {}
-    print "Content-Type: text/html\n\n"
+
+    body = {}
+    headers = {"Content-Type": "application/json",
+               "API": "Insert to 'PRODUCT' table",
+               "author": "sanjeevi rangan",
+               "contact": "sanjeevirangan@gmail.com"}
+    body['Is_Error'] = 'False'
+    response = my_response.MyResponse()
+    response.status_code = 500
+
     if "action" in query and "product_id" in query:
-        if query["action"].value == "product":
-            result['action'] = "PRODUCT"
-            product_id = list(query["product_id"].value.split(','))
+        if query["action"].value.lower() == "product":
+            body['action'] = "PRODUCT"
+            product_id = query["product_id"].value
             sql_query = "insert ignore into product (id) values (%s)"
-            sql_calls.execute_query(sql_query, product_id)
-            sql_calls.commit_db()
-            sql_calls.close_db()
+            try:
+                db = MySQLdb.connect("localhost", "root", "admin", "product_relation", charset='utf8')
+                cursor = db.cursor()
+            except Exception, ex:
+                response.status_code = 503
+                body['Error'] = "Database exception:{0}".format(ex.message)
+                body['Is_Error'] = 'True'
+                body['Result'] = "Failed to insert {0}".format(product_id)
+                response.write()
+                sys.exit(1)
+            try:
+                cursor.execute(sql_query, (product_id,))
+                db.commit()
+            except Exception, ex:
+                response.status_code = 400
+                body['Error'] = "Error while executing query:{0}".format(ex.message)
+                body['Is_Error'] = 'True'
+                body['Result'] = "Failed to insert {0}".format(product_id)
+            else:
+                response.status_code = 200  # OK
+                body['Result'] = "Successfully inserted {0}".format(product_id)
+            #  Done with DB
+            db.close()
+        else:
+            response.status_code = 400
+            body['Is_Error'] = 'True'
+            body['Error'] = "Invalid value for key 'action'."
     else:
-        result['Status'] = "Invalid form key, values"
-        print json.dumps(result)
-        sys.exit(1)
+        response.status_code = 400
+        body['Is_Error'] = 'True'
+        body['Error'] = 'No form data.'
 
-    if sql_calls.has_errors():
-        result['Status'] = "Task Completed with errors"
-        result['Error-Occurrence'] = str(len(sql_calls.err_list))
-        result['Errors'] = str(sql_calls.err_list)
-    else:
-        result['Status'] = "Task completed successfully."
+    response.headers = headers
 
-    result['Task-Execution-Time'] = sql_calls.get_total_execution_time
-    result['Report'] = sql_calls.response
-    print json.dumps(result)
+    response.body = body
+    response.write()
 
 if __name__ == '__main__':
     insert_to_product_table()
