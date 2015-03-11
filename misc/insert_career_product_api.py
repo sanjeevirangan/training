@@ -47,7 +47,7 @@ def insert_to_career_product_table():
                 body['Is_Error'] = 'True'
                 body['Result'] = "Failed to insert {0}, {1}, {2}".format(weight, career_id, product_id)
             else:
-                response.status_code = 200  # OK
+                response.status_code = 201  # Created
                 body['Result'] = "Successfully inserted {0}, {1}, {2}".format(weight, career_id,product_id)
             #  Done with DB
             db.close()

@@ -11,6 +11,15 @@ class MyResponse(object):
         self.body_json = " "
         self.__content_length = 0
         self.status_message = {200: 'OK',
+                               201: 'Created',
+                               202: 'Accepted',
+                               203: 'Non-Authoritative Information',
+                               204: 'No Content',
+                               205: 'Reset Content',
+                               206: 'Partial Content',
+                               207: 'Multi Status',
+                               208: 'Already Reported',
+                               226: 'IM Used',
                                400: 'Bad Request',
                                500: 'Internal Server Error',
                                501: 'Not Implemented',

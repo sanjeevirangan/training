@@ -45,7 +45,7 @@ def insert_to_career_table():
                 body['Is_Error'] = 'True'
                 body['Result'] = "Failed to insert {0}".format(career_id)
             else:
-                response.status_code = 200  # OK
+                response.status_code = 201  # Created
                 body['Result'] = "Successfully inserted {0}".format(career_id)
             #  Done with DB
             db.close()
