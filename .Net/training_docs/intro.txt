@@ -1,3 +1,166 @@
+Notes on .Net training
+
 .Net Need
+
 ->  Distributed applications 
-->  Language interoperability
+
+->  Language interoperability (52 languages)
+->  Languages are converted to CIL (comon Intermediate language)
+->  No dll hell
+
+
+
+CLR components:
+
+-> Type loader
+-> Type verifier (CTS)
+-> JIT Compiler
+-> Garbage Collector
+-> COM interop
+-> Security
+
+
+Garbage Collector:
+
+-> Mark (Idle memeory)
+-> Sweep (Remove the idle object)
+
+
+Interops:
+
+CCW: com callable wrapper (legacy dll in .Net apps)
+RCW: Remote callable wrapper (.Net dll in legacy apps)
+
+
+Security:
+
+Authentication, authorization, permissions
+.config (xml format)
+-> Machine.config
+-> App.config (Windows, WPF)
+-> web.config (web, MVC)
+
+
+
+
+
+Evolution:
+
+.NEt 3.5 -2008- New Features
+-> Implicit variables, Extension method, Anonymus types,
+Lambda expressions, LiNQ, Automatic property, Property initializer. colelction
+
+.Net 4.0 -2010- VS 2010
+
+-> dynamic variables, task parallel library, Interop with Ruby scripts, covariance and contravariance,
+named and optional param
+
+
+
+.Net 4.5 VS2012
+
+-> async and await, WPF enhancements in wpf, wcf, MVC 4.0, web API 1.0
+
+
+.Net 5.0 VS 2013
+
+-> MVC 5.0, entity framework 6.2, Web API 2.1
+
+
+
+
+
+C#
+
+-> case sensitive
+-> Supoorts oops
+-> extension .cs
+-> /* multiline comments */
+-> // single line coments
+-> no pointers (*, &) instead keywords like this, ref, out 
+
+
+
+IDE-> solution-> has multiple projects
+
+libraries are called as namespace -> "using system"
+
+comandline arguements -> string array
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+        }
+    }
+}
+
+
+
+
+Datatypes:
+
+
+-> numberbased
+	-> double 3.14
+	-> float 3.14f
+	-> decimal 3.14M	
+
+-> char based
+	-> char ''
+	-> string ""
+-> others
+
+
+Conversion:
+
+-> Parse - converts string to other datatype
+-> Convert - converts datatype to other types ( usually 18)
+
+
+Operators:
+
+-> Arithematic operators -> numerical datatypes: + - * / %
+
+-> Relational operators: > <= >= != ==
+
+-> Logical operators:  && || !
+
+-> Assignment operator: = += -= *= /= %=
+
+-> unary operator: ++ --
+
+-> ternary operator c = a>b ? 10:12;
+
+
+
+
+
+
+conditional constructs:
+
+-> if else:
+	
+
+-> switch: break is for each statement unlike other languages
+
+
+
+
+looping constructs:
+
+-> while: check for condition and execute
+
+-> do while: execute aleast once then check
+
+-> for: initialization, condition, iterator
+
+-> foreach: iterates the loop. No condition involved
+
+
+
+
+
+
