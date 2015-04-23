@@ -24,7 +24,7 @@ namespace Shopping
             const int discount_price = 10000;
             const int surcharge_limit = 1000;
             const decimal surcharge_rate = 0.025M;
-            const decimal discount_rate = 10.0M;
+            const decimal discount_rate = 0.1M;
 
             do
             {
@@ -78,8 +78,8 @@ namespace Shopping
 
             if (total_price >= discount_price)
             {
-                Console.WriteLine("Congrats!!! \nYou are eligible for discount of rate: " + discount_rate + "%");
-                total_price -= total_price * discount_rate / 100;
+                Console.WriteLine("Congrats!!! \nYou are eligible for discount of rate: " + discount_rate * 100 + "%");
+                total_price -= total_price * discount_rate;
             }
             else if (total_price < surcharge_limit)
             {
