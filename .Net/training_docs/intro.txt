@@ -159,7 +159,88 @@ looping constructs:
 
 -> foreach: iterates the loop. No condition involved
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+Day 02:
+
+OOps concepts:
+
+-> Data Abstraction:
+	-> Access specifiers: 
+		-> Public (even with diff solutions)
+		-> private (only within class)
+		-> protected (only inherited class)
+		-> internal (namespace scope)
+		-> By default a class is "internal"
+		-> By default variables, methods, properties, constructs are private.
+		-> Public is the highest access scope.
+
+
+-> Encapsulation:
+	-> Defining variables, properties, methods inside class is called Encapsulation (data hiding)
+	-> Class: Blueprint of Object. User defined type. Inherited from the parent class "Object"
+	-> Object: Instance of a class. Class variable created during runtime. "new" keyword creates memory in heap for the instantiated object.
+	-> constructor: 
+		-> Invoked when creating object of the class.
+		-> default constructor (by CLR): 
+			-> intializes numerical type to 0 and string types to blank(null)
+			-> Can be written by programmers with no parmaters. But only one default constructor.
+		-> parameteralized constructor: 
+			-> name should be same as constructor and has no return type. 
+			-> Overrides default constructor.
+			-> can be multiple parameterized constructor. (this is polymorphism - constructor overloading)
+		-> Based on Access specifiers:
+			-> public constructor
+			-> static constructor:
+				-> If only static variable is used.
+			-> private constructor:
+				-> Used for a singleton pattern
+		-> 'this' keyword used to point the class variables. Useful when there is ambiguity in the variable names.
+		
+
+
+-> Inheritance:
+
+-> Polymorphism:
+	-> Many forms, overloading
+	-> Static polymorphism:
+		-> constructor, method, operator overloading
+	-> dynamic(runtime) polymorphism:
+		-> method overriding (through inheritance)
+
+
+Memory management:
+
+-> Heap: 
+	-> refence type
+
+-> Stack: 
+	-> value type (primitive data types)
+
+-> Destructor:
+	-> same name as class name. Begins with ~ 
+	-> has no return type.
+	-> Always public
+	-> Cannot be overloaded.
+	-> Last function to be called automatically at the end of the application
+
+
+Methods:
+	-> Possibilities:
+		-> No return type, no parameters
+		-> No return type, has parmaters
+		-> has return type, no parametrs
+		-> has return type, has parameters
+
+
+Operator Overloading:
+
+	-> Primitive numerical datatype: + - * / % 
+		-> Operator overloading method has to be static.
+		-> Cannot return void
+		-> If relational operators are overloaded, they are to be overloaded in pairs.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
