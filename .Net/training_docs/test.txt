@@ -1,0 +1,58 @@
+using System;
+
+
+namespace EmployeeDetails
+{
+    class Employee
+    {
+        int empid;
+        string name;
+        string dept;
+        decimal salary;
+        char grade;
+
+        public void GetEmployeeData()
+        {
+            Console.WriteLine("Enter Employee ID");
+            if (! int.TryParse(Console.ReadLine(), out empid))
+            {
+                Console.WriteLine("Enter a valid Employee ID");
+            }
+
+            Console.WriteLine("Enter Employee name");
+            name = Console.ReadLine();
+            if (string.IsNullOrEmpty(name))
+            {
+                Console.WriteLine("Enter a valid Employee name");
+            }
+
+            Console.WriteLine("Enter Employee dept");
+            dept = Console.ReadLine();
+            if (string.IsNullOrEmpty(dept))
+            {
+                Console.WriteLine("Enter a valid Employee dept");
+            }
+
+            Console.WriteLine("Enter Employee salary");
+            if (!decimal.TryParse(Console.ReadLine(), out salary))
+            {
+                Console.WriteLine("Enter a valid Employee salary");
+            }
+
+            Console.WriteLine("Enter Employee grade");
+            if (!char.TryParse(Console.ReadLine().ToString(), out grade))
+            {
+                Console.WriteLine("Enter a valid Employee grade");
+            }
+        }
+
+        public void ShowEmployeeData()
+        {
+            Console.WriteLine("Employee ID: " + empid);
+            Console.WriteLine("Employee name: " + name);
+            Console.WriteLine("Employee dept: " + dept);
+            Console.WriteLine("Employee salary: " + salary);
+            Console.WriteLine("Employee grade: " + grade);
+        }
+    }
+}
