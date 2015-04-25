@@ -242,6 +242,78 @@ Operator Overloading:
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+Day 03
+
+
+Abstract Base class: 'Is a' relationship
+
+	-> Vitual override
+
+	-> Abstract override
+
+
+	-> Sealed:
+ 		-> Used to prevent a class from futher inheritance.
+	-> new:
+		-> Prevent a method from overriding.
+
+
+
+Interface: 'Has a' relationships
+
+	-> Multiple interfaces can be inherited.
+
+
+Exception Handling:
+
+	-> Exceptions: Unhandled runtime errors.
+	->try, catch, finally, throw
+	-> check block - Arithematic overflow can be checked.
+
+
+Properties:
+	-> Initialize and retrieve data from data members
+	-> set
+		-> Initializes value
+	-> get
+		-> Retrieves value
+	-> Based on Reading
+		-> Read only (only get)
+		-> Write only (only set)
+		-> Read Write (both set and get)
+
+Type Casting:
+	-> Conversion between primitive to primitive data types
+	-> Ex: int to double: double double_age = (double) int_age;
+
+
+Boxing & Unboxing:
+Boxing:
+	-> Converting from primitive to Object type.EX: object objAge = int_age;
+	-> Converts value type to reference type.
+	-> Moves content from stack to heap
+
+Unboxing:
+	-> converting from object to primitive type. Ex: int age = (int)ObjAge; or int age = Convert.ToInt32(age);
+	
+
+
+ref, out & param:
+call by value
+
+call by refernce
+
+ref:
+	-> pre initialization
+out:
+	-> post initialization
+
+param:
+	-> Pass invariable number of arguments to a method.
+	-> Method can have only one param
+	-> Param should be the last arguement. 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
