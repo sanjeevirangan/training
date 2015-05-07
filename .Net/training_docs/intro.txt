@@ -316,4 +316,117 @@ param:
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
+Day_04:
+
+Delegates and Events:
+
+Delegates:
+	-> Similar to Function pointers in C 
+	-> Subscription: Methods subscibed to the delgate gets called.
+
+	-> Declaration:
+		-> public delegate void calc(intx, inty)
+	-> Initialization 
+		-> Methods which subscribe point to delegate : calc c = Addition.Add; c+= Subtract.Sub;
+		-> To remove subscription use -=
+	-> call (invoke)
+		-> c(12,14);
+	-> Types:
+		-> Multicast Delegate:
+			-> One delgate objects initializes multiple methods
+		-> Singlecast Delegate:
+			-> New delegate object initializes single method
+
+
+Events:
+	-> Events are triggered based on condition.
+	-> win/web forms uses events.
+	-> syntax: public event <EVent Handler> <event name>
+		-> public event calc MyEvent
+
+
+.Net 2.0 New Features:
+
+1. Partial classes
+2. Geniric classes
+3. Static classes
+4. Nullable types
+5. Access specifier to get or set in properties
+6. Delegate inference
+7. Anonymous Delegates
+
+
+Partial Classes:
+	-> To split lengthy programmes accross multiple files
+
+Genric Classes:
+	-> Template class to write genric functions.
+	-> syntax class Class_Name<T,U,V>
+	-> Has no need for unboxing like in object types.
+
+Static Classes:
+	-> Cannot be instantiated.
+	-> It is sealed.
+	-> Can contain only static methods, static data members, static constructor.
+	-> Static methods are invoked using ClassName.MethodName().
+	-> Static data members => only one copy is created in memmory.
+	-> Static methods can have local non static variable (within the static method).
+
+
+Nullable:
+
+	-> to validate based on null.
+	-> int ? age = 20; (If initialised, value. else null)
+	-> for nullable variables use age.hasvalue and age.value
+
+
+Access specifier:
+	-> Access specifier for get/set has to be lesser than the scope of the property. Public is highest scope.
+
+Delegate Inference:
+	-> Initializing Delegate without using 'new' keyword.
+
+Anonymus Delegate:
+	-> Delegate without name.
+	-> 
+
+
+
+Colelctions:
+	-> To mitigate drawbacks of arrays. (static, fixed)
+	-> Data structures with implementaion for Add, insert, remove etc;
+
+	-> Types:
+		-> Generic / NonGeneric
+		-> NonGeneric:
+			-> System.Collections namesspace
+			-> Stores all data as objects
+			-> Has overhead of boxing/unboxing
+			-> Arraylist, Stack(LIFO), Queue(FIFO), Hashtable (unsorted), SortedList(sorted bsaed on key value)
+		-> Generic:
+			-> List
+			-> Dictionary
+	
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
