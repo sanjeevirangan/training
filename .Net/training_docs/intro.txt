@@ -409,7 +409,58 @@ Colelctions:
 	
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+Day 05:
 
+Namespace & Assembly:
+
+Assembly:
+	-> Info abt project
+		-> framework version
+		-> library assembly used to generate CIL code
+		-> public key token
+	-> CIL code
+		-> source code compiled to CIL code
+	-> Types:
+		-> Private: Deafult
+			-> Used by add reference.
+		-> Public: shared
+			-> Inside GAC (C:\windows\Assembly)
+			-> Must have unique Public key
+		-> Satellite
+			-> Stored as resource(.resx) file
+			-> culture info (used for localization and globalization)
+
+
+	-> Tools:
+		-> ILDASM: Intermediate language disassembler
+		-> SN - strong name
+			-> To generate public key
+		-> Gac util: To install private assembly to GAC
+			-> Install: gacutil -i projectname 
+			-> Uniinstall: gacutil -u projectname
+
+
+	-> Private to Public:
+		-> generate public key toke. "sn -k key_file.snk"
+		-> Project->properties->Signinh->Check "sign the asembly"
+		
+
+Serialization:
+	-> Saving the state of an object or object persistance in memory is called serialization.
+	-> Namespace: System.Runtime.Serialization
+	-> Types:
+		-> Binary
+			-> Namespace: System.Runtime.Serialization.Formatter.Binary
+			-> BinaryFormatter is used 
+		-> XML	
+			-> Namespace: System.Xml.Serialization
+			-> XMLSerializer
+			-> One tag
+			-> under root tag there can be many tags
+
+	-> Serializable attribute
+		-> [Serializable] (predefined classes gives special meaning to the compiler)can be added before class, methods, properties.
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
