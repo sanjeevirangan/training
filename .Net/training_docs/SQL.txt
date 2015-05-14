@@ -1,0 +1,414 @@
+CREATE TABLE [dept] (
+	[deptno] [int] CONSTRAINT [pk_dpt] PRIMARY KEY ,
+	[dname] [varchar] (20)  ,
+	[loc] [varchar] (20))
+	
+
+insert dept values(10,'ACCOUNTING','NEWYORK')
+insert dept values(20,'RESEARCH','DALLAS')
+insert dept values(30,'SALES','CHICKAGO')
+insert dept values(40,'OPERATIONS','BOSTON')
+
+
+
+
+create table emp(EMPNO                             int constraint pk_emp primary key,
+ENAME                                              VARCHAR(10),
+JOB                                                VARCHAR(9),
+MGR                                                int,
+HIREDATE                                           DATEtime,
+SAL                                                money,
+COMM                                               money,
+DEPTNO                                             int constraint fk_dep foreign key references dept(deptno))
+
+insert emp values (7369,'SMITH','CLERK',7902,'DEC 17 1980',800,NULL,20)
+INSERT EMP VALUES(7499,'ALLEN','SALESMAN',7698,'FEB 20 1981',1600,300,30)
+INSERT EMP VALUES(7521,'WARD','SALESMAN',7698,'FEB 22 1981',1250,500,30)
+INSERT EMP VALUES(7566,'JONES','MANAGER',7839,'APR 02 1981',2975,NULL,20)
+INSERT EMP VALUES(7654,'MARTIN','SALESMAN',7698,'SEP 28 1981',1250,1400,30)
+INSERT EMP VALUES(7698,'BLAKE','MANAGER',7839,'MAY 01 1981',2850,NULL,30)
+INSERT EMP VALUES(7782, 'CLARK','MANAGER',7839,'JUN 09 1981',2450,NULL,10)
+INSERT EMP VALUES(7788, 'SCOTT','ANALYST', 7566,'APR 19 1987',3000,NULL,20)
+INSERT EMP VALUES(7839, 'KING','PRESIDENT',NULL,'NOV 17 1981',5000,NULL,10)
+INSERT EMP VALUES(7844, 'TURNER','SALESMAN',7698, 'SEP 08 1981',1500,NULL,30)
+INSERT EMP VALUES(7876, 'ADAMS','CLERK', 7788, 'MAY 23 1987',1100,NULL,20)
+INSERT EMP VALUES(7900, 'JAMES','CLERK', 7698, 'DEC 03 1981',950,NULL,30)
+INSERT EMP VALUES(7902, 'FORD','ANALYST',7566, 'DEC 03 1981',3000,NULL,20)
+INSERT EMP VALUES(7934,'MILLER','CLERK',7782, 'JAN 23 1982',1300,NULL,10)
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Day 06:
+
+select empno, ename, SAL from emp where JOB = 'clerk' or JOB = 'analyst'
+select empno as 'EMPLOYEE NO', ename as 'EMPLOYEE NAME' from emp
+
+select ename from emp where ename  not like '[S-Z]%'
+select * from emp where job in ('Clerk','manager')
+select * from emp where sal between 800 and 2000
+select * from emp where HIREDATE between '1980-01-01' and '1981-12-31'
+select ename from emp where ename like '[%]%'
+select EMPNO, ENAME from emp where COMM is null
+select * from emp order by ename, JOB
+-- aggr
+-- count, avg, sum, min,max
+-- min, max can work on any data type
+-- avg, sum can work only on numerical types
+-- count count(*), count (ename)
+-- count(*) - counts all values including null
+-- count(ename) - does not count null values
+select top 5 * from emp
+select count(COMM) from emp
+select MAX(sal) from emp
+select MAX(ENAME) from emp
+select MIN(sal) from emp
+select Min(ENAME) from emp
+select min(sal) as 'MinSal', MAX(sal) as 'MaxSal', sum(sal) as 'SumSal', AVG(sal) as 'avgsal' from emp
+-- groupby  based on a column
+-- All columns cannot be selected in grouby
+
+select deptno, count(empno)  as 'Employee count' from  emp
+where SAL > 1000
+group by DEPTNO
+select deptno, count(empno)  as 'Employee count' from  emp
+where SAL > 1000
+group by DEPTNO
+having DEPTNO = 20
+select job, count(*) from emp
+group by job
+having JOB in ('salesman' , 'clerk', 'Analyst')
+order by job desc
+
+select top(1) job, count(*) from emp
+group by JOB
+order by COUNT(*)
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Day: 07
+
+select * from emp;
+select * from dept;
+
+insert into emp(empno, ename) values (9999, 'Tester');
+
+create table project
+(pid int primary key identity (10,10),
+pname varchar(50))
+
+insert into project values('DBA')
+insert into project values('Banking')
+insert into project values('Ecommerce')
+insert into project values('MobileApps')
+
+select * from project
+
+alter table emp
+add pid int constraint fk_emp_project references project(pid);
+
+select * from emp
+
+--equi join or inner join
+select e.ename, d.dname from emp e
+join dept d
+on e.DEPTNO = d.deptno
+
+--left outer join
+-- 1st tabel is left and 2nd table is right
+
+select e.ename, d.dname
+from emp e
+left outer join dept d
+on e.DEPTNO = d.deptno
+
+--right outer join
+select e.ename, d.dname
+from emp e
+right outer join dept d
+on e.DEPTNO = d.deptno
+
+--full outer join
+select e.ename, d.dname
+from emp e
+full outer join dept d
+on e.DEPTNO = d.deptno
+
+--join on more than 2 tables
+select e.ename, d.dname, p.pname, e.COMM from emp e
+join dept d on e.DEPTNO = d.deptno
+join project p on p.pid = e.pid and e.COMM is not null
+
+-- self join
+
+select e.ename as EmployeeName, m.ename as ManagerName from emp e join emp m on m.MGR = e.EMPNO
+
+
+-- subqueires
+
+select ename from emp where sal = max(sal) -- this will not work. We need subquery
+
+select ename from emp where sal = ( select max(sal) from emp)
+
+-- select employees earning salary earning more than 'Ward' and 'Allen'
+select ename from emp 
+where sal > ( select sal from emp where ename in ('Ward', 'Allen'))
+ -- this wont work since this subquery will return multiple vals
+ -- Use Any (or), All (and) when relational operators are used.
+
+ -- >Any - lowest of sub query
+ -- < Any - greatest of subquery
+ -- >All - greatest or max value
+ -- <All - smallest or min value
+
+select ename, sal from emp 
+where sal > All ( select sal from emp where ename in ('Ward', 'Allen'))
+
+-- >Any will give the salary greater than the list of employees who has least salary
+select ename, sal from emp 
+where sal > any ( select sal from emp where ename in ('Ward', 'Allen'))
+
+-- <Any will give the salary lesser than the list of employees who has maximum salary
+select ename, SAL from emp 
+where sal < any ( select sal from emp where ename in ('Ward', 'Allen'))
+
+--In = 
+select empno, ename, job from emp
+where empno in (select EMPNO from emp where job = 'Salesman')
+
+
+select * from emp
+insert into emp values(8888, 'NewEmp', 'Analyst', 9999, '12-12-2003', 4500, null, 30,10)
+
+insert into emp(EMPNO, ENAME) values (9900, 'Emp1')
+
+insert into emp values (8800, 'someName', Null, null, null, null, null, null, null)
+
+
+
+ --index
+create table TestData(personid int, panno varchar(10), name varchar(50))
+
+create clustered index IDX_PANNO on TestData(panno)
+
+alter table TestData
+alter column personid int not null 
+
+alter table TestData
+add constraint PK_Personid1 primary key (personid)
+
+
+--update
+
+update emp
+set sal = sal+100.00, comm = comm + comm*0.10
+
+update emp
+set comm = comm + comm*0.10 where deptno = 20
+
+select * from emp where deptno = 20
+
+-- drop vs truncate: drop removes everything, truncate retains structure.
+-- delete vs truncate: truncate frees the space as well
+
+
+
+-- Subqueries DML (Data Manipulation Language)
+
+alter table Products
+add price int
+select * from Products
+
+create table vendors(
+vendorid int primary key,
+name varchar (50),
+id int references products(prodid))
+
+insert into vendors values(10, 'scott', 100)
+insert into vendors values(20, 'scott', 100)
+insert into vendors values(30, 'scott', 200)
+insert into vendors values(40, 'scott', 300)
+
+select * from vendors
+
+update Products 
+set price = price*2
+where prodid in (select id from vendors where vendorid = 10)
+
+select * from Products
+
+alter table vendors
+drop constraint FK__vendors__id__36B12243 -- get the constraint name from error msg on delete (next statement)
+
+delete from Products
+where exists (select * from vendors where Products.prodid = vendors.id and vendors.vendorid = 20)
+
+
+create table empduplicate
+(empno int primary key,
+ename varchar(50),
+sal money)
+
+insert into empduplicate
+select empno, ename, sal from emp where comm is null
+
+select * from empduplicate
+
+update Products
+set price = price * 3
+where Products.prodid = (select Products.prodid from Products join vendors on Products.prodid = vendors.id and vendors.vendorid = 40)
+
+select * from Products
+
+-- Views
+-- Views are temp tables. No physical memory created.
+-- Views can be updated in SQL
+
+select * from emp
+delete from emp
+
+-- add data to emp table
+insert emp values (7369,'SMITH','CLERK',7902,'DEC 17 1980',800,NULL,20, null)
+INSERT EMP VALUES(7499,'ALLEN','SALESMAN',7698,'FEB 20 1981',1600,300,30, null)
+INSERT EMP VALUES(7521,'WARD','SALESMAN',7698,'FEB 22 1981',1250,500,30, null)
+INSERT EMP VALUES(7566,'JONES','MANAGER',7839,'APR 02 1981',2975,NULL,20, null)
+INSERT EMP VALUES(7654,'MARTIN','SALESMAN',7698,'SEP 28 1981',1250,1400,30, null)
+INSERT EMP VALUES(7698,'BLAKE','MANAGER',7839,'MAY 01 1981',2850,NULL,30, null)
+INSERT EMP VALUES(7782, 'CLARK','MANAGER',7839,'JUN 09 1981',2450,NULL,10, null)
+INSERT EMP VALUES(7788, 'SCOTT','ANALYST', 7566,'APR 19 1987',3000,NULL,20, null)
+INSERT EMP VALUES(7839, 'KING','PRESIDENT',NULL,'NOV 17 1981',5000,NULL,10, null)
+INSERT EMP VALUES(7844, 'TURNER','SALESMAN',7698, 'SEP 08 1981',1500,NULL,30, null)
+INSERT EMP VALUES(7876, 'ADAMS','CLERK', 7788, 'MAY 23 1987',1100,NULL,20, null)
+INSERT EMP VALUES(7900, 'JAMES','CLERK', 7698, 'DEC 03 1981',950,NULL,30, null)
+INSERT EMP VALUES(7902, 'FORD','ANALYST',7566, 'DEC 03 1981',3000,NULL,20, null)
+INSERT EMP VALUES(7934,'MILLER','CLERK',7782, 'JAN 23 1982',1300,NULL,10, null)
+
+select * from emp
+
+create view dept30emp
+as select * from emp where DEPTNO = 30 with check option
+
+select * from dept30emp
+
+update dept30emp
+set SAL = SAL * 3
+where JOB = 'Clerk'
+
+select * from emp where ENAME = 'James' -- here update on dept30emp also updates base table
+
+-- views can be used to store the data of complex queires.
+
+create view empdeptproj2 -- actual subquery is below
+as select ename, pname from emp e 
+join dept d on e.deptno = d.deptno 
+join project p on e.pid = p.pid
+
+select * from empdeptproj2
+
+select * from project
+
+-- Stored procedures
+	-- to reuse the queries. Unlike views, no issues of altering base table
+	-- Unlike functions, it wont return anything.
+	-- declaration: @variable_name data_type
+	-- params: in (input default), out ( output value), inout (same parameter is used as i/p & o/p value)
+	-- print: print'msg'
+
+create proc PrintHello
+as
+begin
+print 'My first stored procedure'
+end
+
+PrintHello -- Execute the stored procedure
+
+--altering stored procedure
+Alter proc PrintHello 
+as
+begin
+print 'My first stored procedure'
+declare @num1 int
+declare @num2 int
+set @num1=10
+set @num2=20
+print 'Added value is'
+print @num1 + @num2
+end
+
+
+--stored procedures with params
+create proc selectemp @eno int
+as
+select * from emp where empno = @eno
+
+exec selectemp 7788 -- right way to execute the stored procedure with in param.
+
+
+-- Stored procedure with multiple params as input
+create proc InsertEmp(@eno int, @ename varchar(50), @job varchar(50), @sal money)
+as
+insert into emp(EMPNO, ENAME, JOB, SAL) 
+values (@eno, @ename, @job, @sal)
+
+exec InsertEmp 3333, 'TestEmp', 'Analyst', 3500 -- right way to execute stored procedure with multiple in params
+
+select * from emp where ename = 'TestEmp'
+
+create proc InsertProduct (@pnm varchar (50), @rate money)
+as
+begin
+declare @pid int
+insert into Products values ( @pnm, @rate)
+select @pid=@@IDENTITY
+print @pid
+end
+
+exec InsertProduct 'fiama di wills', 5.00
+
+select * from Products
+
+select @@IDENTITY from Products
+
+select max(prodid) from Products
+
+create proc calculateamount (@pid int, @qty int, @totamt money out)
+as
+begin
+declare @pr money
+select @pr = price from Products where prodid=@pid
+set @totamt= @pr*@qty
+print @totamt
+end
+
+declare @tot money
+exec calculateamount 300, 5, @tot
+print @tot
+
+create proc UpdateEmp(@job int, @newsal money)
+as
+begin
+set @newsal= .20
+update emp set SAL=sal + (sal*@newsal) where job=@job
+end
+
+-- altering the procedure
+alter proc UpdateEmp(@job varchar(50), @newsal money)
+as
+begin
+set @newsal= .20
+update emp set SAL=sal + (sal*@newsal) where job=@job
+end
+
+exec UpdateEmp 'salesman', .30
+select * from emp where job= 'salesman'
+
+
+create proc TerminateEmployee(@eno int)
+as
+begin
+delete emp where EMPNO=@eno
+end
+
+exec TerminateEmployee 7788
+
+select * from emp where EMPNO=7788
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
