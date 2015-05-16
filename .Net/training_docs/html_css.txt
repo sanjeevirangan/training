@@ -1,0 +1,89 @@
+Day_09
+
+HTTP Pairs:
+	-> HTTP request/ response
+
+
+Login form:
+1. Validation
+	-> Client side validation 
+	-> Server side Validation
+
+
+HTML4:
+	-> Text formatting tags
+	-> Text box 
+		-> single line I/P text
+	-> Password box 
+		-> Store the value as *
+	-> Multiline textbox
+		-> Multiline entry like address
+		-> Define number of rows
+	-> Radio button
+		-> single selection from list of items (gender: M or F)
+	-> check box
+		
+	->  Hidden field
+		-> Can be used for action values
+	-> file uploading
+		-> typ: file
+	-> Drop down box
+		-> option values with name
+	-> List box
+		-> multiple selection from list of items
+	-> Buttons
+		-> To perform an action (raises click event)
+		-> type: submit, reset ( clears form data)
+	-> Forms
+		-> can have a submit button.
+	
+
+CSS: Cascading style sheet
+	-> Formats
+	-> Allignments (width, height)
+	-> Font
+	-> Color
+	-> Types
+		-> External style Sheet 
+			-> <link rel="stylesheet" type="text/css" href = "Filename.css">
+			->
+		-> Internal style sheet
+			-> Overrides external style sheet
+		-> Inline style sheet
+			-> Overrides both external and internal style sheet
+
+	-> Style based on tags..
+		-> body {} : Declare the font-family, font-weight, font-color etc;
+	-> style generic name
+		.Class1 - Style class - will style all elements
+		#Style2 - Id based style - will style the single element declared. 
+			-> Overrides the class since it is specific to an element
+	
+
+HTML5:
+	New tags : header, nav, article, menus, footer
+	-> Header
+		-> container for placing header text
+	-> Nav
+		-> Container for href tag
+	-> article
+		-> Container for <p> and <div>
+	-> menus
+		-> href
+	-> footer
+		-> copyright and footer text
+	
+	-> Canvas tag:
+		-> fordrawing geometric shapes (oval, rect, line, text)
+	-> video tag
+		-> video clips like mp4 etc
+	-> audio tag
+		-> audio clips like mp3, ogg etc
+	-> web storage:
+		-> Types
+			-> Local storage
+				-> permanent
+			-> Session storage 
+				-> only till session
+	
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
