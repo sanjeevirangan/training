@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel = "stylesheet" type = "text/css" href = "ExternalStyleSheet.css" />
+    <title>Text formatting Tags</title>
+    <style>
+        b
+        {
+            text-align:justify;
+            font-family: 'Century Gothic';
+            color:darkcyan;
+        }
+        .internalstyle
+        {
+            width:400px;
+            height:600px;
+            background-color:purple;
+            color:green;
+            font-size:large;
+        }
+        #dummy
+        {
+        }
+    </style>
+</head>
+<body bgcolor= "cyan">
+<b>This is bold</b>
+    <br /> <!-- New line in html -->
+    <i> Text in italics</i>
+    <br />
+    <u> under line</u>
+    <b><i><u>This is bold italics and underlined</u></i></b>
+    <!--Headings-->
+    <h1> Heading 1</h1>
+    <h2>Heading 2</h2>
+    <h3 class = 'internalstyle'>Heading 3</h3>
+    <h4 style = "color:aliceblue; width:200px; font-size:x-large; font-stretch:expanded">Heading 4</h4>
+    <h5>Heading 5</h5>
+    <h6>Heading 6</h6>
+    <center><b>This is bold and displayed in center of the browser</b></center>
+    <br />
+    <tt>Type writer font</tt>
+    <!--Ordered list and unordered list--> 
+    <b><u>Web technologies</u></b>
+    <br />
+    <ol>
+        <li>Html</li>
+        <li>ASP</li>
+        <li>Servlets</li>
+        <li>PHP</li>
+        <li>Scripting Languages</li>
+    </ol>
+    <br />
+    <i><u>Oop's languages</u></i>
+    <ul>
+        <li>c++</li>
+        <li>samll talk</li>
+        <li>Java</li>
+        <li>C#</li>
+    </ul>
+
+    <u> Nested list</u>
+    <ol id ='dummy'>
+        <li>Mercury</li>
+        <li>Venus</li>
+        <li>Earth
+            <ol>
+                <li>water</li>
+                <li>Air</li>
+                <li>fire</li>
+            </ol>
+        </li>
+        <li>Mars</li>
+        <li>Jupiter</li>
+        <li>Saturn</li>
+        <li>Uranus</li>
+        <li>Neptune</li>
+        <li>Pluto</li>
+    </ol>
+
+    <table style = "border:dotted; grid-column-align:center;" cellpadding: >
+        <tr>
+            <td>111</td>
+            <td>scott</td>
+            <td>12500</td>
+
+        </tr>
+        <tr>
+            <td>222</td>
+            <td>tom</td>
+            <td>R&D Manager</td>
+            <td>6500</td>
+
+        </tr>
+    </table>  
+
+    <div class = ClassStyle>
+        <strong> Display data as strong text</strong>
+        <p>C# is oops language but...............
+         all oops languages are not C# ;)</p> <!--Paragrah tag-->
+    </div>
+    <span>Result</span> <!-- placeholder for data. Inline container-->
+</body>
+</html>
