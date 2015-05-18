@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+    <script type="text/javascript">
+    function validateForm() {
+        var uname = document.forms["login_form"]["username"].value;
+        var pwd = document.forms["login_form"]["password"].value;
+	if (uname == null || uname == ""){
+            alert("Invalid username!");
+            return false;
+	}	
+        if (pwd == null || pwd == ""){
+	    alert ("Invalid password!");
+	    return false;
+        }
+	return true;
+    }
+    </script>
+    <link href="{{ url_for('static', filename='styles/style.css') }}" type="text/css" rel="stylesheet" />
+</HEAD>
+  <BODY>
+    <TITLE>Login form</TITLE>
+    <H1>Login to proceed</H1>   
+    <H3>Please enter your username and password.</H3>
+
+    <FORM name="login_form" onsubmit="return validateForm()" METHOD = POST ACTION = '/login'>
+      <TABLE BORDER = 0>
+       
+        <TR><TH>Username:</TH><TD><INPUT TYPE = text NAME = 'username'></TD><TR>
+        <TR><TH>Password:</TH><TD><INPUT TYPE = password NAME = 'password'></TD></TR>
+      </TABLE>
+      <INPUT TYPE = submit VALUE = 'Enter'>
+    </FORM>
+
+    <form action = '/signup'>
+      <input type="submit" value="Signup">
+    </form>
+
+  </BODY>
+</HTML>
