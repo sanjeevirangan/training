@@ -1,0 +1,59 @@
+<HTML>
+<HEAD>
+<script type="text/javascript">
+function validate_signup(){
+    var username = document.forms["signup_form"]["username"].value;
+    if (username == null || username == "" || username.length < 6){
+        alert("Invalid username! \nUsername should be of at least 6 characters.");
+	return false;
+    }
+    var firstname = document.forms["signup_form"]["firstname"].value;
+    if (firstname == null || firstname == ""){
+        alert("Invalid firstname!");
+	return false;
+    }
+    var lastname = document.forms["signup_form"]["lastname"].value;
+    if (lastname == null || lastname == ""){
+        alert("Invalid lastname!");
+	return false;
+    }
+    var pwd = document.forms["signup_form"]["password"].value;
+    if (pwd == null || pwd == "" ||  pwd.length < 6){
+        alert("Invalid password! \nPassword should be minimum of 6 characters.");
+	return false;
+    }
+    var repeat_pwd = document.forms["signup_form"]["repeat_password"].value;
+    if (pwd != repeat_pwd){
+        alert("Mismatch in password and repeat password!");
+	return false;
+    } 
+}
+</script>
+<link href="{{ url_for('static', filename='styles/style.css') }}" type="text/css" rel="stylesheet" />
+</HEAD>
+
+  <BODY>
+    <TITLE>Signups form</TITLE>
+    <H1>Login to proceed</H1>   
+    <H3>Please enter your username and password.</H3>
+
+    <FORM NAME="signup_form" onsubmit="return validate_signup()" METHOD = post ACTION = '/create-profile'>
+      <TABLE BORDER = 0>
+       
+        <TR><TH>Username:</TH><TD><INPUT TYPE = text NAME = 'username'></TD><TR>
+	<TR><TH>First name:</TH><TD><INPUT TYPE = text NAME = 'firstname'></TD><TR>
+	<TR><TH>Last name:</TH><TD><INPUT TYPE = text NAME = 'lastname'></TD><TR>
+	<TR><TH>Email:</TH><TD><INPUT TYPE = email NAME = 'email_id'></TD><TR>	
+        <TR><TH>Password:</TH><TD><INPUT TYPE = password NAME = 'password'></TD></TR>
+	<TR><TH>Repeat Password:</TH><TD><INPUT TYPE = password NAME = 'repeat_password'></TD></TR>
+      </TABLE>
+      <INPUT TYPE = submit VALUE = 'create profile'>
+    </FORM>
+
+    <form action= '/'>
+      <input type="submit" value="Login">
+    </form>
+
+
+  </BODY>
+</HTML>
