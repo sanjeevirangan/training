@@ -1,0 +1,10 @@
+<HTML>
+<Head>
+<link href="{{ url_for('static', filename='styles/style.css') }}" type="text/css" rel="stylesheet" />
+</Head>
+  <BODY>
+    <TITLE>{{page.title}}</TITLE>
+    <H1>Howdy, {{ user.firstname }} {{user.lastname}}!<H1>
+    <H2>{{page.message}}</H2>   
+  </BODY>
+</HTML>
