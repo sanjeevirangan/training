@@ -1,1 +1,35 @@
-Introduction to ASP .Net
+ASP .Net basics
+
+ASP
+	-> browser renders page o/p
+	-> server processes request
+	-> ASP controls has 'Auto post back' to update the changes to the server
+	-> Validation happens by converting to javascript on client side
+
+Form Validation:
+
+	-> Required field validator:
+		-> check for blank values
+	-> Range Validator:
+		-> checks if vaule is within a range
+	-> Compare validator:
+		-> Compare 2 values
+	-> Regular Expressions validator:
+		-> Formats like email, url, postal code, custom regular expression
+	-> Custom validator
+		-> User defined validation
+	-> Validation summary:
+		-> Validation error summary on cliick of submit in page 
+	-> CausesValidation:
+		-> Default is true. Make false to prevent validation
+
+Data Binding:
+	->ASP .Net data controls
+		-> Grid view
+		-> Forms view
+		-> Details view
+		-> Data list
+		-> Repeater
+		-> Dropdown list
+		-> Listbox
+		
